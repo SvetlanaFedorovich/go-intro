@@ -1,0 +1,3 @@
+POST http://localhost:8080/data
+Content-Type: application/json
+@loadtest/payload.json

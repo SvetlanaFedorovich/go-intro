@@ -1,0 +1,9 @@
+.git
+.idea
+.env
+data
+bin
+dist
+loadtest/results
+*.test
+*.out

@@ -1,0 +1,26 @@
+volumes:
+  integration_kafka_data:
+  integration_postgres_data:
+  integration_tempo_data:
+  integration_zookeeper_data:
+  integration_zookeeper_log:
+
+services:
+  zookeeper:
+    volumes:
+      - integration_zookeeper_data:/var/lib/zookeeper/data
+      - integration_zookeeper_log:/var/lib/zookeeper/log
+
+  kafka:
+    volumes:
+      - integration_kafka_data:/var/lib/kafka/data
+
+  postgres:
+    volumes:
+      - ./migrations:/docker-entrypoint-initdb.d:ro,z
+      - integration_postgres_data:/var/lib/postgresql/data
+
+  tempo:
+    volumes:
+      - ./observability/tempo.yml:/etc/tempo.yml:ro,z
+      - integration_tempo_data:/var/tempo
